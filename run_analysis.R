@@ -1,7 +1,7 @@
 setwd("c://users/liam/documents/r/datascience/uci har dataset")
 
 ## Load descriptive information about activity labels and features
-i("activity_labels.txt")) {
+if (file.exists("activity_labels.txt")) {
     activity.labels = read.csv("activity_labels.txt", sep=" ", header=F)
 } else {
     stop("You need the file \"activity_labels.txt\" in your working directory!")
@@ -24,6 +24,19 @@ if (file.exists("X_test.txt")) {
     X.test  = read.fwf("X_test.txt", widths=rep(16,561), header=F)
 } else {
     stop("You need the file \"X_test.txt\" in your working directory!")
+}
+
+## Load the two activity files (the targets of machine learning on the measurements)
+if (file.exists("y_train.txt")) {
+    X.train = read.fwf("y_train.txt", widths=rep(16,561), header=F)
+} else {
+    stop("You need the file \"y_train.txt\" in your working directory!")
+}
+
+if (file.exists("y_test.txt")) {
+    X.test  = read.fwf("y_test.txt", widths=rep(16,561), header=F)
+} else {
+    stop("You need the file \"y_test.txt\" in your working directory!")
 }
 
 ## Load the identifiers for the subjects associated with the measured data
@@ -53,6 +66,7 @@ colnames(X.all) = feature.names
 
 ## extract means and sds of all 561 features
 means.and.sds = cbind(Mean=colMeans(all.data), SD = apply(all.data, 2, sd))
+rownames(means.and.sds) = feature.names
 write.csv(means.and.sds, file="means.and.sds.txt")
 
 ## combine all of the data including activity descriptions and subjects 
