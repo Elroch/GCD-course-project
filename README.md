@@ -1,5 +1,6 @@
-## Coursera Data Science: Getting and Cleaning Data 
-### Course project: Liam Roche June 20 2014
+## Coursera Data Science: Getting and Cleaning Data
+### Course project
+### Liam Roche June 20 2014
 
 This directory contains an R script called "run_analysis.R" for the Getting and Cleaning Data course project.
 The script requires these data files:
@@ -13,7 +14,7 @@ The script requires these data files:
 * activity_labels.txt
 * features.txt
 
-# Data processing
+## Data processing
 
 The script "run_analysis.R" first loads all the measurments and collates them in a single file.
 Then it adds the target data - the activities, and the subject identifiers.
