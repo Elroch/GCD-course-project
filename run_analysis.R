@@ -1,56 +1,55 @@
-setwd("c://users/liam/documents/r/datascience/uci har dataset")
-
 ## Load descriptive information about activity labels and features
+
 if (file.exists("activity_labels.txt")) {
-    activity.labels = read.csv("activity_labels.txt", sep=" ", header=F)
+  activity.labels = read.table("activity_labels.txt", sep=" ", header=F)
 } else {
-    stop("You need the file \"activity_labels.txt\" in your working directory!")
+  stop("You need the file \"activity_labels.txt\" in your working directory!")
 }
 
-if (file.exists("features.txt") {
-    features = read.csv("features.txt", sep=" ", header=F)
+if (file.exists("features.txt")) {
+  features = read.table("features.txt", sep=" ", header=F)
 } else {
-    stop("You need the file \"features.txt\" in your working directory!")
+  stop("You need the file \"features.txt\" in your working directory!")
 }
 
 ## Load the two feature data files
 if (file.exists("X_train.txt")) {
-    X.train = read.fwf("X_train.txt", widths=rep(16,561), header=F)
+  X.train = read.fwf("X_train.txt", widths=rep(16,561), header=F)
 } else {
-    stop("You need the file \"X_train.txt\" in your working directory!")
+  stop("You need the file \"X_train.txt\" in your working directory!")
 }
 
 if (file.exists("X_test.txt")) {
-    X.test  = read.fwf("X_test.txt", widths=rep(16,561), header=F)
+  X.test  = read.fwf("X_test.txt", widths=rep(16,561), header=F)
 } else {
-    stop("You need the file \"X_test.txt\" in your working directory!")
+  stop("You need the file \"X_test.txt\" in your working directory!")
 }
 
 ## Load the two activity files (the targets of machine learning on the measurements)
 if (file.exists("y_train.txt")) {
-    X.train = read.fwf("y_train.txt", widths=rep(16,561), header=F)
+  X.train = read.fwf("y_train.txt", widths=rep(16,561), header=F)
 } else {
-    stop("You need the file \"y_train.txt\" in your working directory!")
+  stop("You need the file \"y_train.txt\" in your working directory!")
 }
 
 if (file.exists("y_test.txt")) {
-    X.test  = read.fwf("y_test.txt", widths=rep(16,561), header=F)
+  X.test  = read.fwf("y_test.txt", widths=rep(16,561), header=F)
 } else {
-    stop("You need the file \"y_test.txt\" in your working directory!")
+  stop("You need the file \"y_test.txt\" in your working directory!")
 }
 
 ## Load the identifiers for the subjects associated with the measured data
 
 if (file.exists("subject_train.txt")) {
-    subject.train  = read.csv("subject_train.txt", header=F)
+  subject.train  = read.table("subject_train.txt", header=F)
 } else {
-    stop("You need the file \"subject_train.txt\" in your working directory!")
+  stop("You need the file \"subject_train.txt\" in your working directory!")
 }
 
 if (file.exists("subject_test.txt")) {
-    subject.test  = read.csv("subject_test.txt", header=F)
+  subject.test  = read.table("subject_test.txt", header=F)
 } else {
-    stop("You need the file \"subject_test.txt\" in your working directory!")
+  stop("You need the file \"subject_test.txt\" in your working directory!")
 }
 
 ## combine all activity class labels and convert to a convenient numeric format
@@ -67,12 +66,12 @@ colnames(X.all) = feature.names
 ## extract means and sds of all 561 features
 means.and.sds = cbind(Mean=colMeans(all.data), SD = apply(all.data, 2, sd))
 rownames(means.and.sds) = feature.names
-write.csv(means.and.sds, file="means.and.sds.txt")
+write.table(means.and.sds, file="means.and.sds.txt")
 
 ## combine all of the data including activity descriptions and subjects 
 ## in a single data frame and save as a file
 all.data = cbind(Activity=descriptive.activity, Subject=subject.all, X.all)
-write.csv(all.data, file="all.data.txt")
+write.table(all.data, file="all.data.txt")
 
 ## combine subject information and convert to numeric format for next step
 subject.all = c(as.numeric(subject.train[[1]]), as.numeric(subject.test[[1]]))
