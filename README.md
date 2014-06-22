@@ -1,9 +1,7 @@
-# Coursera Data Science
-## Getting and Cleaning Data 
-### Course project
-### Liam Roche June 20 2014
+## Coursera Data Science: Getting and Cleaning Data 
+### Course project: Liam Roche June 20 2014
 
-This directory contains an R script called run_analysis.R for the Getting and Cleaning Data course project.
+This directory contains an R script called "run_analysis.R" for the Getting and Cleaning Data course project.
 The script requires these data files:
 
 * X_train.txt
@@ -17,7 +15,7 @@ The script requires these data files:
 
 # Data processing
 
-The script first loads all the measurments and collates them in a single file.
+The script "run_analysis.R" first loads all the measurments and collates them in a single file.
 Then it adds the target data - the activities, and the subject identifiers.
 
 With this data it calculates means and standard deviations of each of the 561 
@@ -34,5 +32,5 @@ and the specific statistic (Statistic).
 
 Numerical labels are used for subjects, the text labels from
 activity_labels.txt for labelling the six activities, and the labels from
-features.txt for labelling features. The latter may need renaming for some types
+features.txt for labelling features. Note: the latter may need renaming for some types
 of further processing.
